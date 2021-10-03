@@ -48,7 +48,7 @@ curl --request PUT \
   --url http://localhost:3000/blog/00000000-0000-0000-0000-000000000000 \
   --header 'Content-Type: application/json' \
   --data '{
-	"body": "Updated title here",
+	"title": "Updated title here",
   "body": "Updated body here"
 }'
 ```
