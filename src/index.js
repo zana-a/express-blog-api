@@ -55,4 +55,18 @@ app.delete("/blog/:id", (req, res) => {
   return res.send(posts);
 });
 
+app.put("/blog/:id", (req, res) => {
+  const { id } = req.params;
+  const result = posts.filter((obj) => obj.id === id);
+
+  // exists by id
+  if (result.length) {
+    // update
+    if (req.body.title) posts[posts.indexOf(...result)].title = req.body.title;
+    if (req.body.body) posts[posts.indexOf(...result)].body = req.body.body;
+    return res.send(posts[posts.indexOf(...result)]);
+  }
+  return res.status(404).send({ msg: `not found blog by id: ${id}` });
+});
+
 app.listen(port, () => console.log(`Application running on port ${port}.`));
