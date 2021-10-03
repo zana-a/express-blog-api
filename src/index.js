@@ -45,9 +45,14 @@ app.post("/blog", (req, res) => {
 app.get("/blog/:id", (req, res) => {
   const { id } = req.params;
   const result = posts.filter((obj) => obj.id === id);
-
   if (result.length) return res.send(...result);
   return res.status(404).send({ msg: `not found blog by id: ${id}` });
+});
+
+app.delete("/blog/:id", (req, res) => {
+  const { id } = req.params;
+  posts = posts.filter((obj) => obj.id !== id);
+  return res.send(posts);
 });
 
 app.listen(port, () => console.log(`Application running on port ${port}.`));
